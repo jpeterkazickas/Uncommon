@@ -1,0 +1,1707 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+  line-height: 1.3;
+  color: #292929;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a{text-decoration:none;
+    &:hover{text-decoration:none;
+    }
+    &:focus{outline:0;
+    }
+}
+*:focus {
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    box-shadow: none;
+  }
+html, body{overflow-x: hidden;}
+
+
+   
+// MIXINS
+@mixin transition($args...){-webkit-transition:$args;-moz-transition:$args;-ms-transition:$args;-o-transition:$args;transition:$args;}
+  
+
+//FONTS//  
+$akr-black: 'Akrobat-black' ; 
+$akr-regular:'Akrobat-regular';
+$semi-bold:'semi-akro';
+$bold:'bold';
+$extra:'extra-bold';
+$light:'extra-light';
+$lit:'Akrobat-light';
+
+// COLORS
+$font-gray: #292929;
+$section-bg: #F5F5F5;
+$section-bg-dark: #eceaea;
+// $purple: rgb(147, 129, 255);
+// $purple-bg: rgb(161, 144, 248);
+$purple-bg: rgb(81, 88, 235);
+$purple: rgb(81, 88, 235);
+
+$number-bg: #2F2F2F;
+
+// HELPERS
+section{margin: 60px 0;text-align: center;}
+
+
+.btn-line{display: flex; justify-content: center; align-items: center; font-size: 16px; color: $font-gray; font-family: $extra;  width: fit-content; cursor:pointer;pointer-events: auto;margin: auto; margin-top: 20px;@include transition(all .4s ease);
+    &:hover{color: $purple !important; text-decoration: underline;}
+    .chevron{margin-left: 12px; width: 20px;}
+    .chevron-left{margin-right: 12px; width: 20px;}
+  }
+  
+
+h1{font-size: 25px; font-family: $extra; letter-spacing: 0.7px; margin: 20px 0;}
+h2{font-family: $extra;font-size: 25px;color: $font-gray;letter-spacing: 0.94px; margin-bottom: 20px; text-transform: uppercase;}
+h3{font-family: $bold;font-size: 18px;color: $font-gray;letter-spacing: 0.52px;}
+p{font-size: 16px;letter-spacing: 0.35px; line-height: 1.5;}
+
+
+.header { background-color: transparent; position: fixed; width: 100%; z-index: 999; padding: 20px 20px 30px 20px; height: 20vh;
+    .hero-purple{position: absolute; top: 0; left: 0; width: 280px; z-index: -1;}
+    .hero-code{position: absolute;width: 170px; top: 55px; left: 0; z-index: -1;} 
+    .logo { display: block; float: left; font-size: 15px;  text-decoration: none; padding-top: 10px; z-index: 998; font-family: $semi-bold; color: #fff;}
+    .menu-icon {cursor: pointer; display: inline-block; float: right;  position: relative; user-select: none;  
+        .navicon {background: #fff;  display: block; height: 2px;  position: relative; transition: background .2s ease-out; width: 18px; margin-top: 15px;
+            &::before, &::after { background: #fff; content: ''; display: block; height: 100%; position: absolute; transition: all .2s ease-out;  width: 100%;
+            }
+        }
+    }
+    ul { margin: 0;  padding: 0; list-style: none; overflow: hidden; background-color: transparent; padding: 0 0 20px 10px; position: relative; opacity: 0;
+        li a { display: block; padding: 20px 20px; text-decoration: none; color: $purple; font-family: $bold; font-size: 18px; letter-spacing: 1px; @include transition(all .4s ease);
+            &:hover{  font-family: $extra; }
+          }
+          .active{font-family: $extra;}
+      }
+  }
+
+  /* menu */
+  
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+  }
+
+    /* menu icon */
+    .header .menu-icon .navicon:before {
+        top: 5px;
+    }
+    
+    .header .menu-icon .navicon:after {
+        top: -5px;
+    }
+
+    /* menu btn */
+    
+    .header .menu-btn {
+        display: none;
+    }
+    
+    .header .menu-btn:checked ~ .menu {
+        max-height: 240px; top: 95%; left: -8%; background-color: #fff; width: 100vw; opacity: 1;
+    }
+
+    .header .menu-btn:checked ~ .header {
+        background-color: red;
+    }
+    
+    .header .menu-btn:checked ~ .menu-icon .navicon {
+        background: transparent;
+    }
+    
+    .header .menu-btn:checked ~ .menu-icon .navicon:before {
+        transform: rotate(-45deg);
+    }
+    
+    .header .menu-btn:checked ~ .menu-icon .navicon:after {
+        transform: rotate(45deg);
+    }
+    
+    .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+    .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+        top: 0;
+    }
+
+    //   .header .menu-btn:checked ~ .menu-item {
+    //     background-color: red !important;
+    //   }
+    //   .scroll {
+    //     background-color: #A1572F;
+    //     color: #eef;
+    //   }
+
+    // .solid {background-color: #ffffff80;transition: background-color 1s ease 0s;
+    //     .menu-icon {
+    //         .navicon {background: $purple;
+    //             &::before, &::after { background: $purple;
+    //             }
+    //         }
+    //     }
+    // }
+      		/* Slide transitions */
+.slideUp {transform: translateY(-110px);transition: transform .5s ease-out;}
+  
+.slideDown {transform: translateY(0);transition: transform .5s ease-out;}
+
+
+
+            /* Slide transitions */
+            .slideUp {transform: translateY(-110px);transition: transform .5s ease-out;}
+    
+            .slideDown {transform: translateY(0);transition: transform .5s ease-out;}
+
+    
+
+
+    #menu{
+        width: 35px;
+        height: 30px;
+        margin: 30px 0 20px 20px;
+        cursor: pointer;
+    }
+    .bar{
+        height: 5px;
+        width: 100%;
+        background-color: #b81568;
+        display: block;
+        border-radius: 5px;
+        transition: 0.3s ease;
+    }
+    #bar1{
+        transform: translateY(-4px);
+    }
+    #bar3{
+        transform: translateY(4px);
+    }
+    .nav li a{
+        color: #fff;
+        text-decoration: none;
+    }
+    .nav li a:hover{
+        font-weight: bold;
+    }
+    .nav li{
+        list-style: none;
+        padding: 16px 0;
+    }
+    .nav{
+        padding: 0;
+        // margin: 0 20px;
+        transition: 0.3s ease;
+        display: none;
+    }
+    .menu-bg, #menu-bar{
+        top: 0;
+        right: 0;
+        position: absolute;
+    }
+    .menu-bg{
+        z-index: 1;
+        width: 0;
+        height: 0;
+        margin: 30px 0 20px 20px;
+        background: radial-gradient(circle,#e94498,#b81568);
+        border-radius: 50%;
+        transition: 0.3s ease;
+    }
+    #menu-bar{
+        z-index: 2;	
+    }
+    .change-bg{
+        width: 550px;
+        height: 540px;
+        transform: translate(-60%,-30%);
+    }
+    .change .bar{
+        background-color: white;
+    }
+    .change #bar1{
+        transform: translateY(4px) rotateZ(-45deg);
+    }
+    .change #bar3{
+        transform: translateY(-6px) rotate(45deg);
+    }
+    .change #bar2{
+        opacity: 0;
+    }
+    .change{
+        display: block;
+    } 
+
+    .hero{ text-align: center; position: relative; padding-bottom: 20px; background: $section-bg;
+        .caption{padding: 5%;
+            .tagline{font-family: $semi-bold;color: #292929;letter-spacing: 0.39px; margin-bottom: 20px;
+                span{display: block; font-family: $extra;}
+            }
+        }
+        .green{width: 10%; position: absolute; right: 0; bottom: -5%;}
+    }
+
+    .about-us{
+        p{font-family: $bold;letter-spacing: 0.41px;}
+        a{margin-top: 20px;}
+    }
+
+    .comparison{position: relative;
+        .purple-oval{position: absolute; right: 0; top: -25%; width: 40%; z-index: -1;}
+    }
+
+    .impact{position: relative;
+        .combined{position: absolute; left: 0;width: 25%;top: -5%; z-index: -1;}
+        p{font-family: $semi-bold;letter-spacing: 0.41px;}
+        .video{margin-top: 20px;
+            .video-wrapper{ width: 100%; position: relative;
+                // .overlay{position: absolute; height: 100%; width: 100%; background-image: url(img/overlay.png); background-size: cover; background-position: center; background-repeat: no-repeat; top: 0; left: 0;}
+                video{width: 100%; height: 100%;}
+                .play-btn{position: absolute; z-index: 20; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer; height: 50px;}
+            }
+        }
+        .hubs{
+            .card{margin: 10px 0; border-radius: 6px; @include transition(all .4s ease);
+                &:hover{
+                    .card-img-overlay{background: transparent; @include transition(.8s all);}
+                }
+                .card-img-overlay{display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.7); border-radius: 6px;
+                    .card-title{font-family: $extra;font-size: 18px;color: #FFFFFF;letter-spacing: 0.43px;text-align: center;}
+                    a{font-family: $semi-bold;color: #FFFFFF;letter-spacing: 0.31px; text-decoration: underline;}
+                }
+            }
+        }
+    }
+
+    .vision{background: $section-bg; position: relative; padding: 20% 0; margin-bottom: 0;
+        .code-snippet{width: 30%; position: absolute; left: 0; top: 2%; }
+        .vision-inner{
+            p{font-family: $extra; margin-bottom: 40px; line-height: 1.3; }
+            .description{
+                .card-deck{
+                    .card{ position: relative; border: 0; background: $purple;border-radius: 10.8px; color: #fff; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 40px 0 20px 0; margin-bottom: 30px;
+                        .number{background-color: $number-bg; height: 30px; width: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-family: $bold; position: absolute; left: -11px; top: -11px;}
+                        img{width: 20%;}
+                        .tie{width: 10%;}
+                        .card-title{font-family: $bold; font-size: 20px;letter-spacing: 0.49px; }
+                        .card-text{font-family: $semi-bold;letter-spacing: 0.32px; line-height: 1.2;}
+                    }
+                }
+            }
+        }
+    }
+
+    .beneficiaries{background: $section-bg-dark; margin: 0; padding: 20% 0;
+        .card{border: 0; margin-bottom: 20px; padding-bottom: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease);
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            
+            .slider{
+                ul{ bottom: 15px;
+                    li{margin: 0;
+                        button:before {
+                            color: #fff !important;font-size: 8px;opacity: 1;
+                        }
+                    }
+                    li.slick-active button:before {
+                        color:$purple !important;
+                    }
+                }
+            }
+            .card-title{font-family: $extra;color: #212121;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+    }
+
+    .testimonials{background-color: $purple-bg ; margin: 0; position: relative;display: flex; justify-content: center; align-items: center; padding: 30% 0;
+        h2{color: #fff;}
+        .card{border: 0; padding: 15px 0; display: flex; flex-direction: column; justify-content: space-between; align-items: center; margin-bottom: 20px;
+            .card-img-top{width: 50%;}
+            .card-title{font-family: $extra;color: #292929; margin-bottom: 0;}
+            small{font-family: $semi-bold;font-size: 15px;color: #878694;}
+            .card-text{font-family: $akr-regular;color: #292929;letter-spacing: 0.41px;line-height: 1.3; margin-top: 30px;}
+        }
+    }
+
+    .get-involved{background: $section-bg; position: relative; padding: 20% 0 20% 0; margin: 0;
+        .code-snippet{width: 30%; position: absolute; left: 0; top: 2%; }
+        .card{ margin-bottom: 30px; padding: 20px 0 40px 0; border: 0;box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease);
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-title{font-family: $extra;color: #292929;letter-spacing: 0.42px;}
+            .card-text{font-family: $akr-regular;color: #292929;letter-spacing: 0.32px;line-height: 1.3; white-space: pre-line;}
+            .hands{width: 50%; margin: auto;}
+            .kuwadzana-team{width: 80%; margin: auto; position: relative;    box-shadow: 12px -12px #1B948B;}
+            .donations{ margin-top: 20px; padding: 0 5%;
+                .top{ display: flex; justify-content: space-between; margin: 10px 0;
+                    img{width: 30%;}
+                }
+                .middle{ display: flex; justify-content: space-between; margin: 10px 0;
+                    img{width: 30%;}
+                    .other{width: 65%;}
+                }
+                .bottom{
+                    img{width: 100%;}
+                }
+                .selection{font-family: $semi-bold;letter-spacing: 0.39px; display: flex; font-size: 15px; justify-content: space-between; align-items: center;
+                    img{width: 25%;}
+                }
+            }
+        }
+    }
+
+    .follow-us{margin: 0; position: relative; padding: 20% 0;
+        .code-right{width: 30%; position: absolute; right: 0; top: -2%; }
+        .social{ 
+            .item{ position: relative; display: flex; justify-content: center; align-items: center;
+                .slide-img{ z-index: 1;}
+                .overlay{position: absolute; height: 100%; width: 100%; background-color: rgba(128, 128, 128, 0.6); z-index: 2; top: 0; display: flex; flex-direction: column; justify-content: space-around; align-items: center; color: #fff;
+                    .top{
+                        .heading{font-family: $bold;}
+                        .tagline{font-family: $semi-bold;white-space: pre-line; font-size: 14px; }
+                    }
+                    .social-media{display: flex;
+                        .left{ 
+                            .date{ display: flex; justify-content: center; align-items: center; font-family: $semi-bold;
+                                img{width: 7%; margin-right: 10px;}
+                            }
+                            .react{display: flex; justify-content: center; align-items: center; padding-top: 10px;
+                                a{display: flex; margin: 0 10px; font-family: $bold; color: #fff; font-size: 16px;
+                                    img{margin: 0 7px; width: 20px;}
+                                }
+                            }
+                        }
+                        .right{display: flex; align-items: flex-end; padding-right: 20px;
+                            img{width: 100%; }
+                        }
+                    }
+                }
+            }
+        }
+        #next{ border: none; background: transparent; position: absolute; top: 43%; height: 40px; outline: none; right: 0;
+            img{height: 30px;}
+        }
+        .sign-up{ margin-top: 70px; padding: 0 5%;
+            p{font-family: $extra; font-size: 20px;color: #3C3C3C;letter-spacing: 0.59px;line-height: 1.2; margin-bottom: 10px;}
+            form{display: flex; justify-content: center; align-items: center;
+                input{font-family: $extra;color: #454545;letter-spacing: 0.47px; border-radius: 5px 0 0 5px; border: 0; background: $section-bg;}
+                button{font-family: $extra;color: #fff;letter-spacing: 0.47px; text-transform: uppercase; border-radius: 0 5px 5px 0; background: $purple; border: 0;}
+            }
+        }
+    }
+
+    .blog{margin: 0; background: $section-bg-dark; padding: 20% 0; position: relative;
+        .oval-green{position: absolute; bottom: 0; left: -3%; width: 15%; z-index: 1;}
+        .card{ margin-bottom: 30px; padding: 20px 0 40px 0; border: 0;box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease);
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-title{font-family: $extra;color: #212121;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .date{font-family: $semi-bold;font-size: 14px;color: #B6B6B6;letter-spacing: 0.27px;text-align: center; margin-bottom: 10px;}
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+    }
+
+    footer{ position: relative;
+        .top{background: $purple-bg; height: 40px; z-index: 5; margin-bottom: 40px;}
+        .footer{ 
+            .details{ display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-bottom: 30px; padding: 0 10%;
+                > div{width: 50%; margin-bottom: 30px;}
+                .heading{font-family: $extra;color: #292929;letter-spacing: 0.39px;}
+                .licence, a{font-family: $akr-regular;color: #292929; letter-spacing: 0.39px; white-space: pre-line; display: block;}
+                }
+                .contact{background: $section-bg-dark; padding: 10%;
+                    .heading{font-family: $extra;color: #292929;letter-spacing: 0.39px; margin-bottom: 10px;}
+                    form{
+                        input, textarea{background: transparent; border: none; border-radius: 0; border-bottom: 1px solid #D8D8D8; font-family: $akr-regular; color: #292929;letter-spacing: 0.39px;}
+                        input{width: 50%;}
+                        button{background: #9381FF;border-radius: 6px;font-family: $bold;color: #FFFFFF;letter-spacing: 0.39px; border: 0;}
+                        input:focus, textarea:focus, select:focus{
+                            outline: none;
+                        }
+                    }
+                }
+                .copy{text-align: center; font-family: $extra; color: #292929; letter-spacing: 0.39px; font-size: 14px;
+                    a{color: #292929;}
+                }
+        }
+    }
+
+
+// ABOUT US
+
+    .our-story-hero{margin-top: 150px; position: relative; padding-bottom: 20px;
+        .caption{text-align: center; margin-bottom: 60px;
+            p{font-family: $semi-bold;color: #292929; margin-bottom: 15px; 
+                span{font-family: $extra;}
+            }
+        }
+        .student-bg, .student-code{position: absolute; }
+        .student-bg{width: 150px; z-index: -1; right: 0; bottom: 0;}
+        .student-code{width: 90px; bottom: 20px; right: 5px; bottom: 13px;}
+
+    }
+    .sustainability{position: relative; padding: 70px 0; background-color: $section-bg; margin-top: 0;
+        .code-snippet{width: 30%; position: absolute; left: 0; bottom: -5px; }
+        .tagline{font-family: $bold; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px;}
+        .card{border: 0; margin-bottom: 40px; padding-bottom: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease);
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-title{font-family: $extra;color: #212121;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+    }
+
+    .future{position: relative; padding-bottom: 20px; margin-bottom: 50px; text-align: center;
+        .caption{text-align: center; margin-bottom: 60px;
+            p{font-family: $semi-bold;color: #292929; margin-bottom: 15px; 
+                span{font-family: $extra;}
+            }
+        }
+        .student-bg, .student-code{position: absolute; }
+        .student-bg{width: 150px; z-index: -1; right: 0; bottom: 0;}
+        .student-code{width: 90px; bottom: 20px; right: 20px; bottom: 35px;}
+
+    }
+
+// HUBS
+
+    .hubs-hero{margin-top: 150px;  text-align: center;
+        p{font-family: $bold;
+            &:nth-of-type(2){margin-top: 20px;}
+        }
+    }
+
+
+    .hubs-comparison{margin: 50px 0;
+    }
+
+    .the-hubs{
+        .wall{margin: 30px 0 50px 0;}
+        p{font-family: $semi-bold;}
+        .story{ margin-bottom: 40px; 
+            h2{ font-size: 20px;}
+            .details{text-align: left; margin-top: 30px;
+                p{margin-bottom: 10px;
+                    span{font-family: $extra;}
+                }
+            }
+            .left{margin-left: 0;}
+            .right{margin-right: 0;}
+        }
+    }
+
+    .the-hubs > div > div > div.col-lg-7.order-4.order-lg-4 > div > div, .the-hubs > div > div > div.col-lg-7.order-8.order-lg-8 > div > div{text-align: right;}
+
+
+// DOANTE PAGE
+
+    .donate-hero{ text-align: center; position: relative; padding-bottom: 60px;
+        .caption{padding: 5%;
+            .tagline{font-family: $semi-bold;color: #292929;letter-spacing: 0.39px; margin-bottom: 20px;
+                span{display: block; font-family: $extra;}
+            }
+        }
+        .green{width: 20%; position: absolute; right: 0; bottom: 0;}
+    }
+
+    .csr{position: relative; padding: 70px 0; background-color: $section-bg; margin: 0;
+        .tagline{font-family: $akr-regular; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px; 
+            span{font-family: $extra;}
+        }
+        .card{border: 0; margin-bottom: 40px; padding: 30px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease); background: #5158eb;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-img{width: 30%; margin: auto;}
+            .card-title{font-family: $extra;color: #fff;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .card-text{font-family: $semi-bold;color: #fff;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+        .bottom{
+            p{font-family: $akr-regular;color: #000000; letter-spacing: 0.41px;text-align: center;}
+        }
+    }
+
+// PORTFOLIO
+
+    .portfolio-items{margin-top: 150px; position: relative; padding-bottom: 50px;
+        > div{
+            > div{margin-bottom: 40px;  text-align: center;
+                p, .desc{font-family: $akr-regular; margin-top: 10px; font-size: 14px; color: #000;
+                    span{font-family: $bold;}
+                }
+                a{font-size: 14px;
+                    img{width: 14px !important;}
+                }
+            }
+        }
+        .code-snippet{ width: 20%; position: absolute; bottom: 0; right: 0;}
+    }
+
+    .more-work{position: relative; padding-bottom: 50px;
+        .site{margin-bottom: 20px;}
+        .code-snippet{ width: 20%; position: absolute; left: 0; bottom: 0;}
+    }
+
+    .benefits{position: relative; padding: 70px 0; background-color: $section-bg; margin: 0;
+        .tagline{font-family: $akr-regular; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px; 
+            span{font-family: $extra;}
+        }
+        .card{border: 0; margin-bottom: 40px; padding: 30px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease); background: #5158eb;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-img{width: 30%; margin: auto;}
+            .card-title{font-family: $extra;color: #fff;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .card-text{font-family: $semi-bold;color: #fff;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+        .bottom{
+            p{font-family: $akr-regular;color: #000000; letter-spacing: 0.41px;text-align: center;}
+        }
+    }
+
+// STORIES PAGE
+
+.stories-hero{margin-top: 130px; text-align: center;
+    .caption{
+        p{font-family: $akr-regular; margin-bottom: 20px;}
+        .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0;
+            span{font-family: $extra;}
+        }
+    }
+    .the-story{ margin-top: 40px;
+        p{font-family: $akr-regular;
+            &:nth-of-type(2){margin-top: 15px;}
+        }
+    }
+}
+
+.more-stories{
+    .wall{margin: 30px 0 50px 0;}
+    p{font-family: $semi-bold;}
+    .story{ margin-bottom: 40px; 
+        h2{ font-size: 20px;}
+        .details{text-align: left; margin-top: 30px;
+            a{margin-bottom: 10px; display: block; color: #000; font-family: $akr-regular;
+                span{font-family: $extra;}
+            }
+        }
+        .left{margin-left: 0;}
+        .right{margin-right: 0;}
+    }
+}
+
+.more-stories > div > div > div.col-lg-7.order-4.order-lg-4 > div > div, .more-stories > div > div > div.col-lg-7.order-8.order-lg-8 > div > div{text-align: right;}
+
+
+    // SINGLE POST
+    .single-story{margin-top: 130px; text-align: center;
+        .caption{ margin-bottom: 20px;
+            p{font-family: $akr-regular; margin-bottom: 20px;}
+            .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0;
+                span{font-family: $extra;}
+            }
+        }
+        .the-story, .the-story1, .the-story2, .the-story3, .the-story4, .the-story5{ margin: 15px 0;
+            p{font-family: $akr-regular; margin: 15px 0;
+                &:nth-of-type(2), &:nth-of-type(4), &:nth-of-type(6){margin: 15px 0;}
+            }
+        }
+        .slidder-arrows{display: flex; padding: 30px 0;
+            a{font-size: 14px;
+                img{width: 12px; margin: 0 7px;}
+            }
+        }
+    }
+
+        // SINGLE POST
+    .single-hub{margin-top: 130px; text-align: center; margin-bottom: 70px;
+        .slide-hero{
+            .caption{ margin-bottom: 20px;
+                p{font-family: $akr-regular; margin-bottom: 20px;}
+                .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0;
+                    span{font-family: $extra;}
+                }
+            }
+        }
+                .hub-story{
+                    p{font-family: $akr-regular; margin: 15px 0;
+                        &:nth-of-type(2), &:nth-of-type(4), &:nth-of-type(6){margin: 15px 0;}
+                    }
+                }
+
+            .slidder-arrows{display: flex; padding: 30px 0;
+                a{font-size: 14px;
+                    img{width: 12px; margin: 0 7px;}
+                }
+            }
+        
+    }
+
+/*
+####################################################
+M E D I A  Q U E R I E S
+####################################################
+*/
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Bootstrap 4 breakpoints
+*/
+
+/* 
+Extra small devices (portrait phones, less than 576px) 
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+
+@media (min-width: 375px) {  
+    .header { height: 16vh;
+        .hero-purple{position: absolute; top: 0; left: 0; width: 280px; z-index: -1;}
+        .hero-code{position: absolute;width: 170px; top: 55px; left: 0; z-index: -1;} 
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+
+    section{margin: 20px 0;}
+    .card-title{font-size: 22px;}
+
+    .btn-line{display: flex; justify-content: center; align-items: center; font-size: 22px; color: $font-gray; font-family: $extra;  width: fit-content; cursor:pointer;pointer-events: auto;margin: auto; margin-top: 40px; @include transition(all .4s ease);
+        &:hover{color: $purple !important;}
+        .chevron{margin-left: 12px; width: 20px;}
+    }
+
+
+    h1{font-size: 30px; font-family: $extra; letter-spacing: 0.7px; margin: 20px 0;}
+    h2{font-family: $extra;font-size: 30px;color: $font-gray;letter-spacing: 0.94px; margin-bottom: 20px; text-transform: uppercase;}
+    h3{font-family: $bold;font-size: 25px;color: $font-gray;letter-spacing: 0.52px;}
+    p{font-size: 22px;letter-spacing: 0.35px; line-height: 1.5;}
+    .header{ height: 12vh;
+        ul{ opacity: 1;
+            li {float: left;
+                a{color: #fff;}
+            }
+        }
+    }
+    .header li a {
+        padding: 20px 30px; font-size: 20px; color: $purple !important;
+    }
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+    .header .menu-icon {
+        display: none;
+    }
+    .solid {background-color: #ffffff80;transition: background-color 1s ease 0s;
+        ul{ opacity: 1;
+            li {float: left;
+                a{color: $purple;}
+            }
+        }
+    }
+
+    .hero{ text-align: center; position: relative; padding-bottom: 20px; background: $section-bg;
+        .caption{padding: 5%;
+            .tagline{font-family: $semi-bold;color: #292929;letter-spacing: 0.39px; margin-bottom: 20px;
+                span{display: block; font-family: $extra;}
+            }
+            .donate{width: 80%;}
+        }
+        .green{width: 10%; position: absolute; right: 0; bottom: -5%;}
+    }
+
+    .impact{ padding: 10% 0;
+        .video{margin: 60px 0;}
+        .hubs{ display: flex; justify-content: space-around; flex-wrap: wrap;
+            > div{width: 49%;}
+            .card{margin: 2px 0; 
+                .card-img-overlay{
+                    .card-title{font-family: $extra;font-size: 22px;color: #FFFFFF;letter-spacing: 0.43px;text-align: center;}
+                    a{font-family: $semi-bold;color: #FFFFFF;letter-spacing: 0.31px; text-decoration: underline; font-size: 16px;}
+                }
+            }
+        }
+    }
+
+    .vision{ padding: 20% 0 15% 0;
+        .code-snippet{width: 20%; position: absolute; left: 0; top: 2%; }
+        .vision-inner{
+            p{white-space: pre-line;  font-size: 28px; margin-bottom: 30px;}
+            .description{
+                .card-deck{
+                    .card{ padding: 40px 0 0 0; margin-bottom: 30px;
+                        .number{height: 50px; width: 50px; font-size: 20px; top: -20px; left: -20px; }
+                        .tie{width: 6%;}
+                        .card-title{font-family: $bold; font-size: 25px;letter-spacing: 0.49px; }
+                        .card-text{font-size: 22px; white-space: pre-line;}
+                    }
+                }
+            }
+        }
+    }
+
+    .beneficiaries{padding: 15% 0;
+        .card{ margin-bottom: 50px; padding-bottom: 20px; 
+            .slider{
+                ul{ bottom: 20px;
+                    li{margin: 0 10px;
+                        button:before {
+                            color: #fff !important;font-size: 15px;opacity: 1;
+                          }
+                    }
+                    li.slick-active button:before {
+                        color:$purple !important;
+                    }
+                }
+            }
+            .card-title{padding: 30px 0 15px 0; font-size: 24px;}
+            .card-text{font-size: 21px;}
+        }
+    }
+
+    .testimonials{position: relative; padding: 15% 0;
+        .oval{position: absolute; z-index: 1; width: 95%;}
+        h2{color: #000;}
+        .card{border: 0; padding: 15px 0; display: flex; flex-direction: column; justify-content: space-between; align-items: center; margin-bottom: 20px;  background: transparent;
+            .card-img-top{width: 50%;}
+            .card-title{font-family: $extra;color: #292929; margin-bottom: 0; font-size: 16px;}
+            small{font-family: $semi-bold;font-size: 15px;color: #878694;}
+            .card-text{ margin-top: 10px; font-size: 12px;}
+        }
+    }
+
+    .get-involved{padding: 15% 0;
+        .code-snippet{width: 15%; top: 3%; }
+        .card{ margin-bottom: 60px; padding: 40px 0 70px 0;  width: 70%; margin: auto; margin-bottom: 50px;
+            .card-title{font-size: 22px;}
+            .card-text{font-size: 16px;}
+            .hands{width: 50%; margin: auto;}
+            .kuwadzana-team{width: 65%;}
+            .donations{  padding: 0 10%;
+                .selection{font-size: 16px; margin-top: 10px;
+                    img{width: 25%;}
+                }
+            }
+        }
+    }
+
+    .follow-us{padding: 15% 0;
+        .code-right{width: 15%; }
+        .social{ 
+            .item{ 
+                .slide-img{ z-index: 1;}
+            }
+        }
+        #next{
+            img{height: 40px;}
+        }
+        .sign-up{ margin-top: 90px; padding: 0 5%;
+            p{font-size: 30px; padding-bottom: 20px;}
+            form{display: flex; justify-content: center; align-items: center;
+                input{font-size: 24px; height: 60px; padding-left: 3%; width: 320px;}
+                button{font-size: 24px; height: 60px; width: 140px}
+            }
+        }
+    }
+
+    .blog{padding: 15% 0; 
+        .card{ margin-bottom: 60px; padding: 40px 0 40px 0; width: 70%; margin: auto; margin-bottom: 50px;
+            .card-title{font-size: 22px;}
+            .date{font-size: 16px; margin-bottom: 30px;}
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+    }
+
+    footer{ 
+        .top{ height: 75px; margin: 0;}
+        .footer{ 
+            .details{ margin-bottom: 0; padding-top: 60px; position: relative;
+                 > div{width: 50%; margin-bottom: 15px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; height: 130px;}
+                .heading{font-size: 22px;}
+                 .licence, a{font-size: 20px;}
+                }
+                .contact{padding-top: 60px; padding-bottom: 60px;
+                    .heading{font-size: 22px; margin-bottom: 20px;}
+                    form{ display: flex; flex-direction: column;
+                        input, textarea{font-size: 20px; height: 50px;}
+                        input{width: 50%;}
+                        button{font-size: 20px; height: 45px; width: 100px ; align-self: flex-end;}
+                        input:focus, textarea:focus, select:focus{
+                            outline: none;
+                        }
+                    }
+                }
+                .copy-desktop{position: absolute; bottom: 15%; left: 13%; font-size: 16px; }
+        }
+    }
+
+    // ABOUT US
+
+    .our-story-hero{padding-bottom: 60px;
+
+        .student-bg{width: 400px;bottom:-10px;}
+        .student-code{width: 230px; right: 5px; bottom: 45px;}
+
+    }
+    .sustainability{position: relative; padding: 100px 0; background-color: $section-bg; margin-top: 0;
+        .code-snippet{width: 20%; bottom: -20px; }
+        .tagline{font-family: $bold; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px;}
+        .card{width: 70%; margin: auto; margin-bottom: 60px;
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+    }
+
+    .future{ margin-bottom: 100px;
+        .caption{text-align: center; margin-bottom: 50px;
+            p{font-family: $semi-bold;color: #292929; margin-bottom: 15px; 
+                span{font-family: $extra;}
+            }
+        }
+        .student-bg{width: 350px; z-index: -1; right: 0; bottom: -20px;}
+        .student-code{width: 250px; bottom: 50px; right: 0; }
+
+    }
+
+    // HUBS
+
+    .hubs-hero{margin-top: 150px;  text-align: center;
+        p{font-family: $bold;
+            &:nth-of-type(2){margin-top: 20px;}
+        }
+    }
+
+
+    .hubs-comparison{margin: 50px 0;
+    }
+
+    .the-hubs{
+        .wall{margin: 30px 0 50px 0;}
+        p{font-family: $semi-bold;}
+        .story{ margin-bottom: 40px; text-align: left; 
+            h2{ font-size: 30px;}
+            .details{text-align: left; margin-top: 30px;
+                p{margin-bottom: 10px;
+                    span{font-family: $extra;}
+                }
+            }
+            .left{margin-left: 0;}
+            .right{margin-right: 0;}
+        }
+    }
+
+    .the-hubs > div > div > div.col-lg-7.order-4.order-lg-4 > div, .the-hubs > div > div > div.col-lg-7.order-8.order-lg-8 > div{text-align: right;}
+
+    // DONATIONS PAGE
+    .donate-hero{ text-align: center; position: relative;
+        h1{font-size: 40px;}
+        .caption{padding: 5%;
+            .tagline{font-family: $semi-bold;color: #292929;letter-spacing: 0.39px; margin-bottom: 40px;}
+            .donate{width: 80%;}
+        }
+    }
+
+    .csr{position: relative; padding: 100px 0; background-color: $section-bg; margin-top: 0;
+        .code-snippet{width: 20%; bottom: -20px; }
+        .tagline{font-family: $bold; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px;}
+        .card{width: 70%; margin: auto; margin-bottom: 60px;
+            .card-img{width: 30%;}
+            .card-title{font-size: 25px;}
+            .card-text{font-family: $semi-bold;letter-spacing: 0.41px;line-height: 1.3; white-space: pre-line;}
+        }
+    }
+
+    // PORTFOLIO
+
+    .portfolio-items{margin-top: 150px; position: relative; padding-bottom: 50px;
+        > div{
+            > div{margin-bottom: 40px;  text-align: center;
+                p, .desc{font-family: $akr-regular; margin-top: 10px; font-size: 16px; color: #000;
+                    span{font-family: $bold;}
+                }
+                a{font-size: 16px;
+                    img{width: 16px;}
+                }
+            }
+        }
+        .code-snippet{ width: 15%; position: absolute; bottom: 0; right: 0;}
+    }
+
+    .more-work{position: relative; padding-bottom: 50px; margin-top: 60px;
+        .site{margin-bottom: 20px;}
+        .code-snippet{ width: 15%; position: absolute; left: 0; bottom: 0;}
+    }
+
+    .benefits{position: relative; padding: 100px 0; background-color: $section-bg; margin-top: 0;
+        .code-snippet{width: 20%; bottom: -20px; }
+        .tagline{font-family: $bold; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px;}
+        .card{width: 70%; margin: auto; margin-bottom: 60px;
+            .card-img{width: 30%;}
+            .card-title{font-size: 25px;}
+            .card-text{font-family: $semi-bold;letter-spacing: 0.41px;line-height: 1.3; white-space: pre-line;}
+        }
+    }
+
+
+    // STORIES PAGE
+
+    .stories-hero{margin-top: 130px; text-align: initial;
+        .caption{
+            p{font-family: $akr-regular; margin-bottom: 20px;}
+            .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0;
+                span{font-family: $extra;}
+            }
+        }
+        .the-story{ margin-top: 40px;
+            p{font-family: $akr-regular;
+                &:nth-of-type(2){margin-top: 15px;}
+            }
+        }
+    }
+
+
+    .more-stories{
+        .wall{margin: 30px 0 50px 0;}
+        p{font-family: $semi-bold;}
+        .story{ margin-bottom: 40px; text-align: left; 
+            h2{ font-size: 30px;}
+            .left{margin-left: 0;}
+            .right{margin-right: 0;}
+        }
+    }
+
+
+
+// SINGLE POST
+    .single-story{margin-top: 130px; text-align: center; 
+        // padding: 0 5%;
+        .caption{ text-align: left;
+            p{font-family: $akr-regular; margin-bottom: 20px;}
+            .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0;
+                span{font-family: $extra;}
+            }
+        }
+        .the-story, .the-story1, .the-story2, .the-story3, .the-story4, .the-story5{ margin: 15px 0;
+            p{font-family: $akr-regular; margin: 15px 0;text-align: initial;
+                &:nth-of-type(2), &:nth-of-type(4), &:nth-of-type(6){margin: 15px 0;}
+            }
+        }
+        .slidder-arrows{display: flex; padding: 30px 0;
+            a{font-size: 14px;
+                img{width: 12px; margin: 0 7px;}
+            }
+        }
+    }
+    .single-slider.slick-initialized.slick-slider .col-lg-5 > img{margin: 30px 0;}
+    
+      // SINGLE POST
+      .single-hub{margin-top: 130px; text-align: initial;
+        .slide-hero{ display: flex; justify-content: space-between;
+            .caption{ text-align: left; width: 50%;
+                p{font-family: $akr-regular; margin-bottom: 20px;}
+                .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0;
+                    span{font-family: $extra;}
+                }
+            }
+            .hub{width: 45%;}     
+        }
+        .hub-story{
+            p{font-family: $akr-regular; margin: 15px 0;
+                &:nth-of-type(2), &:nth-of-type(4), &:nth-of-type(6){margin: 15px 0;}
+            }
+        }
+
+        .slidder-arrows{display: flex; padding: 30px 0;
+            a{font-size: 14px;
+                img{width: 12px; margin: 0 7px;}
+            }
+        }
+    }
+    
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+    section{margin: 100px 0;}
+
+    .btn-line{display: flex; justify-content: center; align-items: center; font-size: 22px; color: $font-gray; font-family: $extra;  width: fit-content; cursor:pointer;pointer-events: auto;margin: auto; margin-top: 20px; @include transition(all .4s ease);
+        &:hover{color: $purple !important;}
+        .chevron{margin-left: 12px; width: 20px;}
+    }
+
+
+    h1{font-size: 22px; font-family: $extra; letter-spacing: 0.7px; margin: 20px 0;}
+    h2{font-family: $extra;font-size: 48px;color: $font-gray;letter-spacing: 0.94px; margin-bottom: 20px; text-transform: uppercase; }
+    h3{font-family: $bold;font-size: 25px;color: $font-gray;letter-spacing: 0.52px;}
+    p{font-size: 22px;letter-spacing: 0.35px; line-height: 1.5;}
+
+
+    .hero{ text-align: center; position: relative; padding-bottom: 20px; background: $section-bg; text-align: initial;
+        .caption{padding: 5%; padding-top: 80px;
+            .tagline{font-family: $semi-bold;color: #292929;letter-spacing: 0.39px; margin-bottom: 20px; font-size: 18px;
+                span{display: block; font-family: $extra;}
+            }
+            .donate{width: 65%;}
+        }
+        .green{width: 5%; position: absolute; right: 0; bottom: -10%;}
+    }
+
+    .about-us{ margin: 0;
+        p{font-family: $bold;letter-spacing: 0.41px;}
+        a{margin-top: 20px;}
+    }
+
+    .comparison{margin-bottom: 0;
+        .purple-oval{top: -20%; width: 30%;}
+    }
+
+    .impact{margin: 0;
+        .combined{position: absolute; left: 0;width: 15%;top: -5%;}
+        .hubs{ display: flex; justify-content: space-around; flex-wrap: wrap; margin: 60px 0;
+            > div{width: 48%;}
+            .card{margin: 4px 0; 
+                .card-img-overlay{
+                    .card-title{font-size: 17px;}
+                    a{font-size: 14px;}
+                }
+            }
+        }
+    }
+
+    .vision{padding: 15% 0; margin: 0;
+        .code-snippet{width: 20%; }
+        .vision-inner{
+            p{font-size: 22px; white-space: unset; }
+            .description{
+                .card-deck{
+                    .card{ padding: 30px 0 20px 0; margin-bottom: 15px; height: auto;
+                        .number{background-color: $number-bg; height: 30px; width: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-family: $bold; position: absolute; left: -11px; top: -11px;}
+                        img{width: 20%;}
+                        .tie{width: 10%;}
+                        .card-title{font-size: 20px; }
+                        .card-text{line-height: 1.2; font-size: 15px; white-space: unset;}
+                        .card-body{padding: 0;}
+                    }
+                }
+            }
+        }
+    }
+
+    .get-involved{padding: 15% 0;
+        .code-snippet{width: 15%; top: 5%; }
+        .card{ margin-bottom: 60px; padding: 40px 0 70px 0;  width: 100%; margin: 0;
+            .card-title{font-size: 22px;}
+            .card-text{font-size: 16px;}
+            .hands{width: 80%; margin: auto;}
+            .kuwadzana-team{width: 88%; margin: auto; margin-top: 30px; margin-bottom: 20px;}
+            .donations{  padding: 0 10%; margin-top: 0;
+                .selection{font-size: 16px; margin-top: 10px;
+                    img{width: 25%;}
+                }
+            }
+        }
+    }
+
+    .follow-us{padding-bottom: 10%;}
+
+    .blog{padding: 15% 0; 
+        .card{width: 100%; margin-bottom: 0; height: 100%;
+            .card-title{font-size: 22px;}
+            .date{font-size: 16px; margin-bottom: 30px;}
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+    }
+
+    // ABOUT US
+
+    .our-story-hero{margin-top: 150px; position: relative; padding-bottom: 20px;
+        h2{font-size: 30px;}
+        .caption{text-align: center; margin-bottom: 20px;
+            p{margin-bottom: 10px;  font-size: 17px;
+                span{font-family: $extra;}
+            }
+        }
+        .student-bg, .student-code{position: absolute; }
+        .student-bg{width: 300px; z-index: -1; right: 0; bottom: 0;}
+        .student-code{width: 200px; bottom: 30px; right: 0;}
+
+    }
+    .sustainability{position: relative; padding: 70px 0; background-color: $section-bg; margin-top: 0;
+        h2{font-size: 30px;}
+        .code-snippet{width: 20%; position: absolute; left: 0; bottom: -10px; }
+        .tagline{font-family: $bold; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px;}
+        .card{border: 0; margin-bottom: 40px; padding-bottom: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease); width: auto; margin-bottom: 60px;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-title{font-family: $extra;color: #212121;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3; font-size: 18px;}
+        }
+    }
+
+    .future{position: relative; padding-bottom: 20px; margin-bottom: 50px; text-align: center;
+        h2{font-size: 30px;}
+        .caption{text-align: center; margin-bottom: 60px;
+            p{font-family: $semi-bold;color: #292929; margin-bottom: 10px;  font-size: 17px;
+                span{font-family: $extra;}
+            }
+        }
+        .student-bg, .student-code{position: absolute; }
+        .student-bg{width: 300px; z-index: -1; right: 0; bottom:23%;}
+        .student-code{width: 200px; bottom: 20px; right: 20px; bottom: 30%;}
+
+    }
+
+
+    // HUBS
+
+    .hubs-hero{margin-top: 150px;  text-align: center;
+        p{font-family: $bold;
+            &:nth-of-type(2){margin-top: 20px;}
+        }
+    }
+
+
+    .hubs-comparison{margin: 50px 0;
+    }
+
+    .the-hubs{ margin-bottom: 50px;
+        .wall{margin: 0;}
+        p{font-family: $semi-bold;}
+        .story{ margin-bottom: 70px; text-align: left; 
+            h2{ font-size: 30px;}
+            .details{text-align: left; margin-top: 30px;
+                p{margin-bottom: 10px;
+                    span{font-family: $extra;}
+                }
+            }
+            .left{margin-left: 0;}
+            .right{margin-right: 0;}
+        }
+    }
+
+    .the-hubs > div > div > div.col-lg-7.order-4.order-lg-4 > div, .the-hubs > div > div > div.col-lg-7.order-8.order-lg-8 > div{text-align: right;}
+
+    // DONATE PAGE
+
+    .donate-hero{ text-align: center; position: relative;text-align: initial;
+        h1{margin-bottom: 10px; font-size: 35px;}
+        .caption{padding: 5%; padding-top: 80px;
+            .tagline{font-family: $semi-bold;color: #292929;letter-spacing: 0.39px; margin-bottom: 20px; font-size: 18px;
+                span{display: block; font-family: $extra;}
+            }
+            .donate{width: 65%;}
+        }
+        .green{width: 10%; position: absolute; right: 0; bottom: 0;}
+    }
+
+    .csr{position: relative; padding: 70px 0; background-color: $section-bg; margin-top: 0;
+        h2{font-size: 30px;}
+        .code-snippet{width: 20%; position: absolute; left: 0; bottom: -10px; }
+        .tagline{font-family: $bold; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px;}
+        .card{border: 0; margin-bottom: 40px; padding-bottom: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease); width: auto; margin-bottom: 60px;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-title{font-family: $extra;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .card-text{font-family: $semi-bold;letter-spacing: 0.41px;line-height: 1.3; font-size: 18px;}
+        }
+    }
+
+    // PORTFOLIO
+
+    .portfolio-items{margin-top: 150px; position: relative; padding-bottom: 50px;
+        > div{
+            > div{margin-bottom: 40px;  text-align: center;
+                p, .desc{font-family: $akr-regular; margin-top: 10px; font-size: 24px; color: #000;
+                    span{font-family: $bold;}
+                }
+                a{font-size: 24px;
+                    img{width: 25px !important;}
+                }
+            }
+        }
+        .code-snippet{ width: 15%; position: absolute; bottom: 0; right: 0;}
+    }
+
+    .more-work{position: relative; padding-bottom: 100px; margin-top: 60px;
+        .site{margin-bottom: 20px;}
+        .code-snippet{ width: 15%; position: absolute; left: 0; bottom: 0;}
+    }
+
+    .benefits{position: relative; padding: 100px 0 70px 0; background-color: $section-bg; margin-top: 0; 
+        h2{font-size: 30px;}
+        .code-snippet{width: 20%; position: absolute; left: 0; bottom: -10px; }
+        .tagline{font-family: $bold; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px;}
+        .card{border: 0; margin-bottom: 40px; padding-bottom: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease); width: auto; margin-bottom: 60px;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-title{font-family: $extra;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .card-text{font-family: $semi-bold;letter-spacing: 0.41px;line-height: 1.3; font-size: 18px;}
+        }
+    }
+
+
+    // STORIES PAGE
+
+    .stories-hero{margin-top: 130px; text-align: initial;
+        .caption{
+            h1{font-size: 60px;letter-spacing: 1.17px;}
+            p{font-size: 26px; color: #000000; letter-spacing: 0.51px; }
+            .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0; font-size: 26px;
+                span{font-family: $extra;}
+            }
+        }
+        .the-story{ margin-top: 40px;
+            p{font-family: $akr-regular; font-size: 26px;
+                &:nth-of-type(2){margin-top: 15px;}
+            }
+        }
+    }
+
+    .more-stories{ margin-bottom: 50px;
+        .wall{margin: 0;}
+        p{font-family: $semi-bold;}
+        .story{ margin-bottom: 70px; text-align: left;  
+            h2{ font-size: 36px;}
+            .left{margin-left: 0;}
+            .right{margin-right: 0;}
+        }
+    }
+
+    .more-stories > div > div > div.col-lg-7.order-4.order-lg-4 > div, .more-stories > div > div > div.col-lg-7.order-8.order-lg-8 > div{text-align: right;}
+
+
+
+    // SINGLE POST
+    .single-story{margin-top: 130px; text-align: center; 
+        // padding: 0 5%;
+        .caption{
+            h1{font-size: 60px;letter-spacing: 1.17px; margin-top: 0;}
+            p{font-size: 26px; color: #000000; letter-spacing: 0.51px; }
+            .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0; font-size: 26px;
+                span{font-family: $extra;}
+            }
+        }
+        .the-story, .the-story1, .the-story2, .the-story3, .the-story4, .the-story5{ margin: 0;
+            p{font-family: $akr-regular; margin: 0;text-align: initial; font-size: 17px; padding: 10px 0; line-height: 1.7;
+                &:nth-of-type(2), &:nth-of-type(4), &:nth-of-type(6){margin: 0;}
+            }
+        }
+        .slidder-arrows{display: flex; padding: 30px 0;
+            a{font-size: 14px;
+                img{width: 12px; margin: 0 7px;}
+            }
+        }
+    }
+    .tanya-thumbnail{margin-bottom: 50px;}
+
+
+    .single-slider.slick-initialized.slick-slider .col-lg-5 > img{margin: 0;}
+    body > main > div > div.container > div > div > div > div.container-fluid.slick-slide.slick-current.slick-active div.col-lg-5.col-xl-5 {display: flex; justify-content: center; align-items: center;}
+     // SINGLE POST
+     .single-hub{margin-top: 130px; text-align: initial;
+        .slide-hero{ display: flex; justify-content: space-between;
+            .caption{
+                h1{font-size: 60px;letter-spacing: 1.17px; margin-top: 0;}
+                p{font-size: 26px; color: #000000; letter-spacing: 0.51px; }
+                .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0; font-size: 26px;
+                    span{font-family: $extra;}
+                }
+            }
+            .hub{width: 50%;}     
+        }
+        .hub-story{
+            p{font-family: $akr-regular; margin: 15px 0;
+                &:nth-of-type(2), &:nth-of-type(4), &:nth-of-type(6){margin: 15px 0;}
+            }
+        }
+
+        .slidder-arrows{display: flex; padding: 30px 0;
+            a{font-size: 14px;
+                img{width: 12px; margin: 0 7px;}
+            }
+        }
+    }
+
+
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    section{padding: 7% 0 !important;}
+    h1{font-size: 30px; white-space: pre-line; line-height: 1.1; margin: 10px 0;}
+
+
+    .header{height: 15vh; padding-right: 16%;}
+
+    
+    .hero{ text-align: center; position: relative; padding-bottom: 20px; background: $section-bg; text-align: initial;
+        .caption{padding: 5%; padding-top: 120px;
+            .tagline{font-family: $semi-bold;color: #292929;letter-spacing: 0.39px; margin-bottom: 0; font-size: 21px; white-space: pre-line; line-height: 1.1;
+                span{display: block; font-family: $extra;}
+            }
+            .donate{width: 53%;}
+        }
+        .green{width: 5%; position: absolute; right: 0; bottom: -10%;}
+    }
+
+
+    .comparison{position: relative; padding: 0 !important;
+        .purple-oval{position: absolute; right: 0; top: -20%; width: 30%; z-index: -1;}
+    }
+
+    .impact{margin: 0; padding-bottom: 5%;
+        .combined{position: absolute; left: 0;width: 15%;top: -5%;}
+        .hubs{ display: flex; justify-content: space-between; flex-wrap: wrap; margin: 50px 0; align-items: stretch;
+            > div{width: 48.5%;
+            }
+            .card{margin: 10px 0; 
+                .card-img-overlay{
+                    .card-title{font-size: 17px;}
+                    a{font-size: 14px;}
+                }
+            }
+        }
+    }
+    
+    .vision{padding: 5% 0; margin: 0;
+        .code-snippet{width: 10%; top: 5%; }
+        .vision-inner{ margin-top: 10%;
+            p{font-size: 22px; white-space: unset; }
+            .description{
+                .card-deck{
+                    .card{ padding: 30px 0 20px 0; margin-bottom: 25px; height: auto; margin-top: 20px;
+                        .number{height: 60px; width:60px; left: -20px; top: -35px; font-size: 22px;}
+                        img{width: 30%;}
+                        .tie{width: 10%;}
+                        .card-title{font-size: 20px; }
+                        .card-text{line-height: 1.2; font-size: 15px; white-space: pre-line;}
+                        .card-body{padding: 1.25rem;}
+                    }
+                }
+            }
+        }
+    }
+    .vision > div > div > div.d-none.d-lg-block.col-lg-5 > img{min-width: 130%;}
+
+    .testimonials{position: relative; padding: 15% 0; height: 100vh;
+        .oval{position: absolute; z-index: 1; width: 60%; bottom: 13%;}
+        h2{color: #000;}
+        .card{border: 0; padding: 15px 0; display: flex; flex-direction: column; justify-content: space-between; align-items: center; margin-bottom: 20px;  background: transparent;
+            .card-img-top{width: 40%;}
+            .card-title{font-family: $extra;color: #292929; margin-bottom: 0; font-size: 16px;}
+            small{font-family: $semi-bold;font-size: 15px;color: #878694;}
+            .card-text{ margin-top: 10px; font-size: 16px; white-space: pre-line;}
+        }
+    }
+    .get-involved{padding: 15% 0;
+        .code-snippet{width: 10%; top: 5%; }
+        .card{ margin-bottom: 60px; padding: 40px 0 70px 0;  width: 100%; margin: 0; height: 100%;
+            .card-title{font-size: 22px;}
+            .card-text{font-size: 16px;}
+            .hands{width: 80%; margin: auto;}
+            .kuwadzana-team{width: 88%; margin: auto; margin-top: 30px; margin-bottom: 20px;}
+            .donations{  padding: 0 10%; margin-top: 0;
+                .selection{ margin-top: 10px;
+                    p{font-size: 16px;}
+                    img{width: 25%;}
+                }
+            }
+        }
+    }
+
+    .follow-us{ padding-bottom: 7%;
+        .social{ 
+            .item{ 
+                &:hover{ 
+                    .overlay{opacity: 1;}
+                }
+                .overlay{opacity: 0; @include transition(all .4s ease);}
+            }
+        }
+        #next{ border: none; background: transparent; position: absolute; top: 43%; height: 40px; outline: none; right: 0;
+            img{height: 30px;}
+        }
+        .sign-up{ margin-top: 70px; padding: 0 5%;
+            p{font-family: $extra; font-size: 20px;color: #3C3C3C;letter-spacing: 0.59px;line-height: 1.2; margin-bottom: 10px;}
+            form{display: flex; justify-content: center; align-items: center;
+                input{font-family: $extra;color: #454545;letter-spacing: 0.47px; border-radius: 5px 0 0 5px; border: 0; background: $section-bg;}
+                button{font-family: $extra;color: #fff;letter-spacing: 0.47px; text-transform: uppercase; border-radius: 0 5px 5px 0; background: $purple; border: 0;}
+            }
+        }
+    }
+
+    .blog{padding-bottom: 15% !important; padding-top: 7%;
+        .oval-green{width: 10%;}
+        .card{width: 100%; margin-bottom: 0; height: 100%;
+            .card-title{font-size: 22px;}
+            .date{font-size: 16px; margin-bottom: 30px;}
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3;}
+        }
+    }
+
+    footer{ 
+        .top{ height: 75px; margin: 0;}
+        .footer{ 
+            .details{ margin-bottom: 0; padding-top: 60px; position: relative;
+                 > div{width: 25%; margin-bottom: 15px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; height: 130px;}
+                .heading{font-size: 22px; margin-bottom: 10px;}
+                 .licence, a{font-size: 20px; padding-bottom: 7px;}
+                }
+                .contact{padding-top: 60px; padding-bottom: 60px;
+                    .heading{font-size: 22px; margin-bottom: 20px;}
+                    form{ display: flex; flex-direction: column;
+                        input, textarea{font-size: 20px; height: 50px;}
+                        input{width: 50%;}
+                        button{font-size: 20px; height: 45px; width: 100px ; align-self: flex-end;}
+                        input:focus, textarea:focus, select:focus{
+                            outline: none;
+                        }
+                    }
+                }
+                .copy-desktop{position: absolute; bottom: 15%; left: 25%; font-size: 16px; text-align: center; }
+        }
+    }
+
+    
+
+
+    // ABOUT US
+
+    .our-story-hero{margin-top: 150px; position: relative; padding-bottom: 40px;
+        h2{font-size: 48px;}
+        .caption{text-align: left; margin-bottom: 20px;
+            p{margin-bottom: 15px;  font-size: 22px;  line-height: 34px;
+                span{font-family: $extra;}
+            }
+        }
+        .student-bg, .student-code{position: absolute; }
+        .student-bg{width: 400px; z-index: -1; right: 0; bottom: 0;}
+        .student-code{width: 250px; bottom: 70px; right: 0;}
+        .student{
+            img{min-width: 110%;}
+        }
+
+    }
+    .sustainability{position: relative; padding: 70px 0; background-color: $section-bg; margin-top: 0;
+        h2{font-size: 48px;}
+        .code-snippet{width: 15%; position: absolute; left: 0; bottom: -10px; }
+        .tagline{font-family: $bold; color: #292929;letter-spacing: 0.41px; margin-bottom: 50px;}
+        .card{border: 0; margin-bottom: 40px; padding-bottom: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); @include transition(all .4s ease); width: auto; margin-bottom: 60px; height: 550px;
+            &:hover {
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            .card-title{font-family: $extra;color: #212121;letter-spacing: 0.47px; padding: 10px 0 5px 0; margin-bottom: 0;}
+            .card-text{font-family: $semi-bold;color: #2E2E2E;letter-spacing: 0.41px;line-height: 1.3; font-size: 22px;}
+        }
+    }
+
+    .future{position: relative; padding-bottom: 20px; margin-bottom: 50px; text-align: left;
+        h2{font-size: 45px;}
+        .caption{text-align: left; margin-bottom: 60px;
+            p{font-family: $semi-bold;color: #292929; margin-bottom: 10px;  font-size: 22px;
+                span{font-family: $extra;}
+            }
+        }
+        .student-bg, .student-code{position: absolute; }
+        .student-bg{width: 300px; z-index: -1; right: 0; bottom:12%;}
+        .student-code{width: 200px; bottom: 20px; right: 0; bottom: 21%;}
+        .student{
+            img{min-width: 125%;}
+        }
+    }
+
+        // HUBS
+
+        .hubs-hero{margin-top: 150px;  text-align: center;
+            p{font-family: $bold;
+                &:nth-of-type(2){margin-top: 20px;}
+            }
+        }
+    
+    
+        .hubs-comparison{margin:  0;
+        }
+    
+        .the-hubs{ margin: 0; padding-bottom: 0 !important;
+            .wall{margin: 0;}
+            p{font-family: $semi-bold; line-height: 34px; }
+            .story{ margin-bottom: 120px; text-align: left; 
+                h2{ font-size: 35px;}
+                p{font-size: 24px;}
+                .details{text-align: left; margin-top: 30px;
+                    p{margin-bottom: 20px; font-size: 24px;
+                        span{font-family: $extra;}
+                    }
+                }
+                .left{margin-left: 0;}
+                .right{margin-right: 0;}
+            }
+        }
+    
+        .the-hubs > div > div > div.col-lg-6.order-4.order-lg-4 > div, .the-hubs > div > div > div.col-lg-6.order-8.order-lg-8 > div{text-align: right;}
+    
+    
+         // STORIES PAGE
+
+    .stories-hero{margin-top: 130px; text-align: initial;
+        .caption{
+            h1{font-size: 60px;letter-spacing: 1.17px; margin-bottom: 40px;}
+            p{font-size: 26px; color: #000000; letter-spacing: 0.51px; white-space: pre-line; margin-bottom: 40px;}
+            .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0; font-size: 26px;
+                span{font-family: $extra;}
+            }
+        }
+        .the-story{ margin-top: 40px;
+            p{font-family: $akr-regular; font-size: 26px;
+                &:nth-of-type(2){margin-top: 15px;}
+            }
+        }
+    }
+
+    .more-stories{ margin: 0; padding-bottom: 0;
+        .wall{margin: 0; margin-top: 80px;}
+        p{font-family: $semi-bold;}
+        .story{ margin-bottom: 70px; text-align: left;  padding-right: 10%; margin-top: 80px;
+            p{font-size: 24px; line-height: 34px;}
+            h2{ font-size: 33px; margin-bottom: 40px;}
+            .story-link{font-size: 26px;margin-bottom: 20px;}
+            .left{margin-left: 0;}
+            .right{margin-right: 0;}
+        }
+    }
+
+    .more-stories > div > div > div.col-lg-7.order-4.order-lg-4 > div, .more-stories > div > div > div.col-lg-7.order-8.order-lg-8 > div{padding-right: 0; padding-left: 15%;}
+
+
+    // SINGLE POST
+    .single-story{margin-top: 130px; text-align: center; 
+        .caption{
+            h1{font-size: 60px;letter-spacing: 1.17px; margin-bottom: 40px;}
+            p{font-size: 26px; color: #000000; letter-spacing: 0.51px; white-space: pre-line; margin-bottom: 40px;}
+            .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0; font-size: 26px;
+                span{font-family: $extra;}
+            }
+        }
+        .the-story, .the-story1, .the-story2, .the-story3, .the-story4, .the-story5{ margin: 0;
+            p{font-family: $akr-regular; margin: 0;text-align: initial; font-size: 18px; padding: 10px 0; line-height: 1.7;
+                &:nth-of-type(2), &:nth-of-type(4), &:nth-of-type(6){margin: 0;}
+            }
+        }
+        .slidder-arrows{display: flex; padding: 30px 0;
+            a{font-size: 14px;
+                img{width: 12px; margin: 0 7px;}
+            }
+        }
+    }
+
+
+    .single-slider.slick-initialized.slick-slider .col-lg-4 > img{margin: 0; padding-top: 70px;}
+    body > main > div > div.single-slider.slick-initialized.slick-slider div.col-lg-5 {display: flex; justify-content: center; align-items: center;}
+
+
+    // SINGLE POST
+    .single-hub{margin-top: 130px; text-align: initial;
+        .slide-hero{ display: flex; justify-content: space-between;
+            .caption{
+                h1{font-size: 60px;letter-spacing: 1.17px; margin-top: 0;}
+                p{font-size: 26px; color: #000000; letter-spacing: 0.51px; white-space: pre-line; }
+                .author, .date{display: block; color: #000; font-family: $akr-regular; margin: 20px 0; font-size: 26px;
+                    span{font-family: $extra;}
+                }
+            }
+            .hub{width: 50%;}     
+        }
+        .hub-story{
+            p{font-family: $akr-regular; margin: 15px 0;
+                &:nth-of-type(2), &:nth-of-type(4), &:nth-of-type(6){margin: 15px 0;}
+            }
+        }
+
+        .slidder-arrows{display: flex; padding: 30px 0;
+            a{font-size: 14px;
+                img{width: 12px; margin: 0 7px;}
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Custom media queries
+*/
+
+/* Set width to make card deck cards 100% width */
+@media (max-width: 950px) { 
+
+}
+
+

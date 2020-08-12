@@ -1,0 +1,208 @@
+@font-face {
+    font-family: 'semi-akro';
+    src: url('../akro/Akrobat-SemiBold.eot');
+    src: local('../akro/Akrobat SemiBold'), local('Akrobat-SemiBold'),
+        url('../akro/Akrobat-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../akro/Akrobat-SemiBold.woff2') format('woff2'),
+        url('../akro/Akrobat-SemiBold.woff') format('woff'),
+        url('../akro/Akrobat-SemiBold.ttf') format('truetype'),
+        url('../akro/Akrobat-SemiBold.svg#Akrobat-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-Regular.eot');
+    src: local('Akrobat Regular'), local('Akrobat-Regular'),
+        url('Akrobat-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-Regular.woff2') format('woff2'),
+        url('Akrobat-Regular.woff') format('woff'),
+        url('Akrobat-Regular.ttf') format('truetype'),
+        url('Akrobat-Regular.svg#Akrobat-Regular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:'extra-bold';
+    src: url('../akro/Akrobat-ExtraBold.eot');
+    src: local('../akro/Akrobat ExtraBold'), local('Akrobat-ExtraBold'),
+        url('../akro/Akrobat-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('../akro/Akrobat-ExtraBold.woff2') format('woff2'),
+        url('../akro/Akrobat-ExtraBold.woff') format('woff'),
+        url('../akro/Akrobat-ExtraBold.ttf') format('truetype'),
+        url('../akro/Akrobat-ExtraBold.svg#Akrobat-ExtraBold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-Thin.eot');
+    src: local('Akrobat Thin'), local('Akrobat-Thin'),
+        url('Akrobat-Thin.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-Thin.woff2') format('woff2'),
+        url('Akrobat-Thin.woff') format('woff'),
+        url('Akrobat-Thin.ttf') format('truetype'),
+        url('Akrobat-Thin.svg#Akrobat-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-Black.eot');
+    src: local('Akrobat Black'), local('Akrobat-Black'),
+        url('Akrobat-Black.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-Black.woff2') format('woff2'),
+        url('Akrobat-Black.woff') format('woff'),
+        url('Akrobat-Black.ttf') format('truetype'),
+        url('Akrobat-Black.svg#Akrobat-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat-light';
+    src: url('../akro/Akrobat-Light.eot');
+    src: local('../akro/Akrobat Light'), local('Akrobat-Light'),
+        url('../akro/Akrobat-Light.eot?#iefix') format('embedded-opentype'),
+        url('../akro/Akrobat-Light.woff2') format('woff2'),
+        url('../akro/Akrobat-Light.woff') format('woff'),
+        url('../akro/Akrobat-Light.ttf') format('truetype'),
+        url('../akro/Akrobat-Light.svg#Akrobat-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'extra-light';
+    src: url('../akro/Akrobat-ExtraLight.eot');
+    src: local('../akro/Akrobat ExtraLight'), local('Akrobat-ExtraLight'),
+        url('../akro/Akrobat-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('../akro/Akrobat-ExtraLight.woff2') format('woff2'),
+        url('../akro/Akrobat-ExtraLight.woff') format('woff'),
+        url('../akro/Akrobat-ExtraLight.ttf') format('truetype'),
+        url('../akro/Akrobat-ExtraLight.svg#Akrobat-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bold';
+    src: url('../akro/Akrobat-Bold.eot');
+    src: local('../akro/Akrobat Bold'), local('Akrobat-Bold'),
+        url('../akro/Akrobat-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../akro/Akrobat-Bold.woff2') format('woff2'),
+        url('../akro/Akrobat-Bold.woff') format('woff'),
+        url('../akro/Akrobat-Bold.ttf') format('truetype'),
+        url('../akro/Akrobat-Bold.svg#Akrobat-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-Thin_1.eot');
+    src: local('Akrobat Thin'), local('Akrobat-Thin'),
+        url('Akrobat-Thin_1.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-Thin_1.woff2') format('woff2'),
+        url('Akrobat-Thin_1.woff') format('woff'),
+        url('Akrobat-Thin_1.ttf') format('truetype'),
+        url('Akrobat-Thin_1.svg#Akrobat-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-ExtraLight_1.eot');
+    src: local('Akrobat ExtraLight'), local('Akrobat-ExtraLight'),
+        url('Akrobat-ExtraLight_1.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-ExtraLight_1.woff2') format('woff2'),
+        url('Akrobat-ExtraLight_1.woff') format('woff'),
+        url('Akrobat-ExtraLight_1.ttf') format('truetype'),
+        url('Akrobat-ExtraLight_1.svg#Akrobat-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-Light_1.eot');
+    src: local('Akrobat Light'), local('Akrobat-Light'),
+        url('Akrobat-Light_1.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-Light_1.woff2') format('woff2'),
+        url('Akrobat-Light_1.woff') format('woff'),
+        url('Akrobat-Light_1.ttf') format('truetype'),
+        url('Akrobat-Light_1.svg#Akrobat-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-Bold_1.eot');
+    src: local('Akrobat Bold'), local('Akrobat-Bold'),
+        url('Akrobat-Bold_1.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-Bold_1.woff2') format('woff2'),
+        url('Akrobat-Bold_1.woff') format('woff'),
+        url('Akrobat-Bold_1.ttf') format('truetype'),
+        url('Akrobat-Bold_1.svg#Akrobat-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-Black_1.eot');
+    src: local('Akrobat Black'), local('Akrobat-Black'),
+        url('Akrobat-Black_1.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-Black_1.woff2') format('woff2'),
+        url('Akrobat-Black_1.woff') format('woff'),
+        url('Akrobat-Black_1.ttf') format('truetype'),
+        url('Akrobat-Black_1.svg#Akrobat-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-ExtraBold_1.eot');
+    src: local('Akrobat ExtraBold'), local('Akrobat-ExtraBold'),
+        url('Akrobat-ExtraBold_1.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-ExtraBold_1.woff2') format('woff2'),
+        url('Akrobat-ExtraBold_1.woff') format('woff'),
+        url('Akrobat-ExtraBold_1.ttf') format('truetype'),
+        url('Akrobat-ExtraBold_1.svg#Akrobat-ExtraBold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: url('Akrobat-SemiBold_1.eot');
+    src: local('Akrobat SemiBold'), local('Akrobat-SemiBold'),
+        url('Akrobat-SemiBold_1.eot?#iefix') format('embedded-opentype'),
+        url('Akrobat-SemiBold_1.woff2') format('woff2'),
+        url('Akrobat-SemiBold_1.woff') format('woff'),
+        url('Akrobat-SemiBold_1.ttf') format('truetype'),
+        url('Akrobat-SemiBold_1.svg#Akrobat-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat-regular';
+    src: url('../akro/Akrobat-Regular_1.eot');
+    src: local('../akro/Akrobat Regular'), local('Akrobat-Regular'),
+        url('../akro/Akrobat-Regular_1.eot?#iefix') format('embedded-opentype'),
+        url('../akro/Akrobat-Regular_1.woff2') format('woff2'),
+        url('../akro/Akrobat-Regular_1.woff') format('woff'),
+        url('../akro/Akrobat-Regular_1.ttf') format('truetype'),
+        url('../akro/Akrobat-Regular_1.svg#Akrobat-Regular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
